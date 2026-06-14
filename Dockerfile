@@ -34,5 +34,6 @@ RUN mkdir -p /app/data /app/data/uploads
 
 EXPOSE 3000
 
-# Push schema (creates tables if missing) then start
-CMD ["sh", "-c", "npx drizzle-kit push && npm start"]
+# Ensure data dirs exist on the volume (the volume mount shadows build-time mkdir),
+# push schema (creates tables if missing) then start
+CMD ["sh", "-c", "mkdir -p /app/data/uploads && npx drizzle-kit push && npm start"]
