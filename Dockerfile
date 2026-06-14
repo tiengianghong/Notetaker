@@ -29,9 +29,8 @@ COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
 COPY --from=builder /app/src/lib/db/schema.ts ./src/lib/db/schema.ts
 COPY --from=builder /app/scripts ./scripts
 
-# data dir is the persistent volume mount point in production
+# data dir is the persistent volume mount point in production (Railway mounts it via dashboard)
 RUN mkdir -p /app/data /app/data/uploads
-VOLUME ["/app/data"]
 
 EXPOSE 3000
 
